@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  //App을 Provider로 감싸주고, configStore에서 export default 한 store를 넣어줍니다.
   <Provider store={store}>
     <App />
   </Provider>
@@ -22,3 +23,4 @@ reportWebVitals();
 // App이라는 컴포넌트가 프로바이더의 지배권 안으로 들어오는 것.
 // 프로바이더라는 것은 우리가 만든 그 store를 기반으로 지배권을 행사하는 건데, 
 // store로 만들어 놓은 그 중앙 데이터 관리소를 이제는 이 App 컴포넌트 하부에서(App 컴포넌트가 있는 곳 전체에서 store를 쓸 수 있다는 것. )
+// 리덕스는 action —> dispatch —> reducer 순으로 동작

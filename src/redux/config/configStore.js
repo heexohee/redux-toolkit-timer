@@ -1,5 +1,5 @@
 // 중앙 데이터 관리소(store)를 설정하는 부분.
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({});
@@ -19,3 +19,5 @@ export default store;
 // 그렇게 만든 우리의 store을 애플리케이션에 주입해주는 과정이 필요한데
 // 이렇게 store를 만들었는데, store를 사용하기 위해해서 애플리케이션 내부로 넣어야 되니까
 // 만든 것을 밖으로 내보내야함. 
+
+//리덕스는 action —> dispatch —> reducer 순으로 동작
