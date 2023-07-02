@@ -1,11 +1,19 @@
 // 중앙 데이터 관리소(store)를 설정하는 부분.
 import { createStore } from 'redux';
 import { combineReducers } from 'redux';
+import counter from '../modules/counter';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+    counter //: counter, //key-value가 같으면 생략 가능. 이렇게되면 이 애플리케이션 전체에서 counter라는 reducer을 쓰게됨.
+});
+
 const store = createStore(rootReducer);
-
 export default store;
+
+
+
+
+
 // 함수가 실행이 되면 그 return값을 변수에 넣는 것.
 // 함수의 인자들은 reducer의 묶음들이 들어가야함.
 // 즉, rootreducer가 createStore의 인자로 들어간다.
