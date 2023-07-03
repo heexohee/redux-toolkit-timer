@@ -2,24 +2,44 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 // import { PLUS_ONE, MINUS_ONE } from "./redux/modules/counter";
 import { plusOne, minusOne } from "./redux/modules/counter";
+import { useEffect, useState } from "react";
+import { plusN } from "./redux/modules/counter";
 
 
 function App() {
+const [number, setNumber ] = useState(0);
+
+
   // 여기에서 store에 접근하여, counter의 값을 읽어오고 싶다.
   // useSelector라는 훅으로
   const counter = useSelector((state) => {
     return state.counter;
   });
 
+  // useEffect는 화면이 다시 랜더링될 때, 출력되는 작동을하는 hook입니다.
+  // 그래서 의존성 배열에 number를 주게 되면, number라는 state가 바뀔 때마다
+  // 내부의 로직이 수행됨. 
+  
+  // 잘 동작한다는 것을 아래의 코드 3줄로 확인했음.
+  // useEffect(()=>{
+  //   console.log('number ->',+number)
+  // }, [number])
+
 
   // dispatch를 가져와보자!(여기서도 redux만의 훅을 써야함.)
   const dispatch = useDispatch();
   
   
-  console.log('counter->', counter.number);
+  //console.log('counter->', counter.number);
   return (<>
+  <div> 현재 카운트 : {counter.number} </div>
   <div> 
-    현재 카운트 : {counter.number}
+    <input type="number" 
+    value={number} 
+    onChange={(event)=>{
+    setNumber(event.target.value)
+  }} />
+  
   </div>
 
   <button onClick={()=>{
@@ -37,14 +57,21 @@ function App() {
   //   type: PLUS_ONE,
   // });
 
-  dispatch(plusOne());
-  }}> 😘 </button>
+  // dispatch(plusOne());
+
+  // dispatch({
+  //   type : "counter/PLUS_N",
+  //   payload:3,
+  // });
+  // 아래 코드 해체한 것이 위의 4줄의 코드
+  dispatch(plusN(number));
+  }}> + </button>
 
 <button onClick={()=>{
     // 여기에 -1을 해주는 로직을 작성!
     // store에 있는 reducer가 정해놓은 방식을 써야함! 
   dispatch(minusOne());
-  }}> 🥹 </button>
+  }}> - </button>
 
 
   </>
