@@ -2,6 +2,21 @@
     export const PLUS_ONE = "counter/PLUS_ONE";
     export const MINUS_ONE = "counter/MINUS_ONE";
 
+// action creator : action value를 return하는 함수.
+// action 객체는 어디서 쓰나? : dispatch가 action 객체를 던진다고 했음.
+// 컴포넌트에서 쓰임! 컴포넌트에서 쓰기 위해서 export 해주자!
+export const plusOne = ()=>{
+    return {
+        type: PLUS_ONE,
+    }
+}
+export const minusOne = ()=>{
+    return {
+        type: MINUS_ONE,
+    }
+}
+
+
 
 // src/modules/counter.js
 
