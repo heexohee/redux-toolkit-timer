@@ -3,11 +3,11 @@ import "./App.css";
 // import { PLUS_ONE, MINUS_ONE } from "./redux/modules/counter";
 import { plusOne, minusOne } from "./redux/modules/counter";
 import { useEffect, useState } from "react";
-import { plusN } from "./redux/modules/counter";
+import { plusN, minusN } from "./redux/modules/counter";
 
 
 function App() {
-const [number, setNumber ] = useState(0);
+const [number, setNumber] = useState(0);
 
 
   // 여기에서 store에 접근하여, counter의 값을 읽어오고 싶다.
@@ -37,7 +37,7 @@ const [number, setNumber ] = useState(0);
     <input type="number" 
     value={number} 
     onChange={(event)=>{
-    setNumber(event.target.value)
+    setNumber(+event.target.value)
   }} />
   
   </div>
@@ -70,7 +70,7 @@ const [number, setNumber ] = useState(0);
 <button onClick={()=>{
     // 여기에 -1을 해주는 로직을 작성!
     // store에 있는 reducer가 정해놓은 방식을 써야함! 
-  dispatch(minusOne());
+  dispatch(minusN(number));
   }}> - </button>
 
 
@@ -78,3 +78,16 @@ const [number, setNumber ] = useState(0);
 )}
 
 export default App;
+
+// key값 난수로
+// date 객체로 id 값
+// Math.random() 값 
+// uuid
+
+
+// 리액트에서 엘리먼트에 키를 넣는 이유
+// 아까 고유값 키-> 식별하기 위했던 것(투두)
+// 둘이 다르다!!!!
+// 리액트에서 엘림너트에 key를 키를 사용하는 이유
+// 키 벨류 페어말할때 키가 아님.
+
