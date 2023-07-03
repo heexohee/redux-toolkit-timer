@@ -10,7 +10,20 @@ const initialState = {
   
   // input : state와 action
   const counter = (state = initialState, action) => {
+    //console.log(state);
     switch (action.type) {
+        case "PLUS_ONE":
+            return {
+                number: state.number+1,
+            }
+            // 그러면 우리는 action 객체를 던져줄 때, 액션에 
+            // 있는 타입을 "PLUS_ONE"으로 해서 던져주면 되겠다.
+
+            case "MINUS_ONE":
+                return {
+                    number: state.number-1,
+                }
+
       default:
         return state;
     }
