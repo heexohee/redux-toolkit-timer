@@ -37,7 +37,8 @@ const [number, setNumber] = useState(0);
     <input type="number" 
     value={number} 
     onChange={(event)=>{
-    setNumber(+event.target.value)
+      const {value} = event.target;
+    setNumber(+value)
   }} />
   
   </div>
