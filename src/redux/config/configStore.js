@@ -1,13 +1,30 @@
 // 중앙 데이터 관리소(store)를 설정하는 부분.
-import { createStore } from 'redux';
-import { combineReducers } from 'redux';
-import counter from '../modules/counter';
+//import { createStore } from 'redux';
+//import { combineReducers } from 'redux';
+//import { configure } from '@testing-library/react';
 
-const rootReducer = combineReducers({
-    counter //: counter, //key-value가 같으면 생략 가능. 이렇게되면 이 애플리케이션 전체에서 counter라는 reducer을 쓰게됨.
+import counter from '../modules/counterSlice';
+import todos from "../modules/todosSlice";
+
+import { configureStore } from '@reduxjs/toolkit';
+
+
+// ASIS : 일반 리듀서(기존)
+// const rootReducer = combineReducers({
+//     counter //: counter, //key-value가 같으면 생략 가능. 이렇게되면 이 애플리케이션 전체에서 counter라는 reducer을 쓰게됨.
+// });
+
+// const store = createStore(rootReducer);
+
+// TODO : Redux Toolkit(툴킷 사용버전)
+const store = configureStore({
+   reducer : {
+    counter : counter, todos: todos 
+   },
 });
+// 키-벨류 페어로 묶어줌. 
+// counter라는 키를 가진 counter라는 리듀서를 넣어줄 것이다.
 
-const store = createStore(rootReducer);
 export default store;
 
 
