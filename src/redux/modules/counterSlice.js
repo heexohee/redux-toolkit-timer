@@ -1,13 +1,12 @@
-// action value
 
-import { createSlice } from "@reduxjs/toolkit";
-import { createStoreHook } from "react-redux";
-
+// import { createStoreHook } from "react-redux";
 // action creator를 쓰기 때문에 이제 export를 해줄 필요가 없다!
-const PLUS_ONE = "counter/PLUS_ONE";
-const MINUS_ONE = "counter/MINUS_ONE";
-const PLUS_N = "counter/PLUS_N";
-const MINUS_N = "counter/MINUS_N";
+
+// action value들
+// const PLUS_ONE = "counter/PLUS_ONE";
+// const MINUS_ONE = "counter/MINUS_ONE";
+// const PLUS_N = "counter/PLUS_N";
+// const MINUS_N = "counter/MINUS_N";
 
 
 // action creator : action value를 return하는 함수.
@@ -49,9 +48,9 @@ const MINUS_N = "counter/MINUS_N";
 // src/modules/counter.js
 
 // 초기 상태값
-const initialState = {
-  number: 0,
-};
+// const initialState = {
+//   number: 0,
+// };
 
 // 리듀서 : 리듀서란, state의 변화를 일으키는 함수
 // state를 action의 타입에 따라 변경하는 작업을 해주는 함수다.
@@ -82,7 +81,18 @@ const initialState = {
 //       return state;
 //   }
 // };
+// --- 기존 리덕스 사용법 ---
 
+// --- createSlice ---
+import { createSlice } from "@reduxjs/toolkit";
+
+// 초기 상태값은 그대로!
+const initialState = {
+  number: 0,
+};
+
+//  Action Value, Action Creator, Reducer가 하나로 합쳐졌다는 점
+// createSlice는 reducer도 만들고 action creator도 동시에 만들어 낸다.
 // 카운터 슬라이스 안에는 action creator와 reducer가 둘 다 들어있다.
 // name, initialState, reducers 이렇게 세가지를 인자로 가진 간단한 API
 const counterSlice = createSlice({
@@ -100,10 +110,13 @@ const counterSlice = createSlice({
   },
 });
 // 그래서 counterSlice.reducer;를 export해주면 reducer를 바깥으로 내보낼 수 있다.
+// 여기 있는 actions은 addNumber, minusNumber를 가지고 있는 객체를 의미.
+
 // 액션크리에이터는 컴포넌트에서 사용하기 위해 export 하고
 export const { addNumber, minusNumber } = counterSlice.actions;
 // reducer 는 configStore에 등록하기 위해 export default 합니다.
 export default counterSlice.reducer;
+
 
 //액션들도 아래처럼 익스포트 해줌!(아직 안만들어서 주석해둠)
 //export counterSlice.actions
