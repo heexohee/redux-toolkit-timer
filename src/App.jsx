@@ -94,17 +94,66 @@
 
 // src/App.js
 
-import React from "react";
-import { useSelector } from "react-redux";
+// import React from "react";
+// import { useSelector } from "react-redux";
 
-const App = () => {
-  // Store에 있는 todos 모듈 state 조회하기
-  const todos = useSelector((state) => state.todos);
+// const App = () => {
+//   // Store에 있는 todos 모듈 state 조회하기
+//   const todos = useSelector((state) => state.todos);
 
-  // Store에 있는 counter 모듈 state 조회하기
+//   // Store에 있는 counter 모듈 state 조회하기
+//   const counter = useSelector((state) => state.counter);
+
+//   return <div>App</div>;
+// };
+
+// export default App;
+
+// --
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addNumber, minusNumber } from "./redux/modules/counterSlice";
+
+function App() {
+  const [number, setNumber] = useState(0);
+
   const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
-  return <div>App</div>;
-};
+  useEffect(() => {
+    console.log("number ->", number);
+  }, [number]);
+
+  return (
+    <>
+      <div>현재 카운트: {counter.number}</div>
+      <div>
+        {/* <input
+          type="number"
+          value={number}
+          onChange={(event) => {
+            const { value } = event.target;
+            setNumber(+value);
+          }}
+        /> */}
+      </div>
+      <button
+        onClick={() => {
+          dispatch(addNumber(number));
+        }}
+      >
+        +
+      </button>
+      <button
+        onClick={() => {
+          dispatch(minusNumber(number));
+        }}
+      >
+        -
+      </button>
+    </>
+  );
+}
 
 export default App;

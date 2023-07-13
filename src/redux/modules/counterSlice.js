@@ -101,11 +101,11 @@ const counterSlice = createSlice({
   reducers: {
     // 리듀서 안에서 만든 함수 자체가 리듀서의 로직이자, 동시에 액션 크리에이터가 된다.
     addNumber: (state, action) => {
-      state.number = state.number + action.payload;
+      state.number = state.number + 1;
     },
 
     minusNumber: (state, action) => {
-      state.number = state.number - action.payload;
+      state.number = state.number - 1;
     },
   },
 });
