@@ -118,7 +118,7 @@ import { addNumber, minusNumber } from "./redux/modules/counterSlice";
 function App() {
   const [number, setNumber] = useState(0);
 
-  const counter = useSelector((state) => state.counter);
+  const globalNumber = useSelector((state) => state.counter.number);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -127,30 +127,30 @@ function App() {
 
   return (
     <>
-      <div>현재 카운트: {counter.number}</div>
+    <div>현재 카운트: {globalNumber}</div>
       <div>
-        {/* <input
+         <input
           type="number"
           value={number}
           onChange={(event) => {
             const { value } = event.target;
             setNumber(+value);
           }}
-        /> */}
+        />
       </div>
       <button
         onClick={() => {
-          dispatch(addNumber(number));
+          dispatch(addNumber(+number));
         }}
       >
-        +
+        더하기
       </button>
       <button
         onClick={() => {
-          dispatch(minusNumber(number));
+          dispatch(minusNumber(+number));
         }}
       >
-        -
+        빼기
       </button>
     </>
   );
