@@ -114,6 +114,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNumber, minusNumber } from "./redux/modules/counterSlice";
+import { __addNumber,__minusNumber } from "./redux/modules/counterSlice";
 
 function App() {
   const [number, setNumber] = useState(0);
@@ -140,14 +141,16 @@ function App() {
       </div>
       <button
         onClick={() => {
-          dispatch(addNumber(+number));
+           // dispatch(addNumber(+number));
+           dispatch(__addNumber(+number)); //인자로 에드넘버가 들어오고, 
         }}
       >
         더하기
       </button>
       <button
         onClick={() => {
-          dispatch(minusNumber(+number));
+          //dispatch(minusNumber(+number));
+          dispatch(__minusNumber(+number));
         }}
       >
         빼기

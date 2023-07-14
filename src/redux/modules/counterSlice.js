@@ -83,8 +83,40 @@
 // };
 // --- 기존 리덕스 사용법 ---
 
-// --- createSlice ---
-import { createSlice } from "@reduxjs/toolkit";
+
+
+// --- createSlice ---와 thunk사용 
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+
+// 2개의 input 
+// (1) 이름 : 큰 의미x 
+// (2) 함수 : 인자가 두개 들어감(컴포넌트에 보내줄 페이로드, thunk에서 가지고 있는 내장 기능을 가지고 있는 객체 )
+export const __addNumber = createAsyncThunk(
+  "ADD_NUMBER_WAIT",
+  (payload, thunkAPI)=>{
+  // 수행할 동작 : 3초를 기다리게 함.
+  setTimeout(()=>{
+    thunkAPI.dispatch(addNumber(payload)); 
+    //addNumber-> 액션 크리에이터, 넣어줘야함. 
+    // 그래야 액션 크레이터가 발동되면서 (addNumber(payload))이 부분이 객체로 바뀜.
+  }, 3000)
+  }
+);
+
+
+export const __minusNumber = createAsyncThunk(
+  "MINUS_NUMBER_WAIT",
+  (payload, thunkAPI)=>{
+  // 수행할 동작 : 3초를 기다리게 함.
+  setTimeout(()=>{
+    thunkAPI.dispatch(minusNumber(payload)); 
+    //addNumber-> 액션 크리에이터, 넣어줘야함. 
+    // 그래야 액션 크레이터가 발동되면서 (addNumber(payload))이 부분이 객체로 바뀜.
+  }, 3000)
+  }
+);
+
 
 // 초기 상태값은 그대로!
 const initialState = {
